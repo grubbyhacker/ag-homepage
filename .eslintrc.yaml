@@ -1,0 +1,32 @@
+env:
+  browser: true
+  es2020: true
+
+parserOptions:
+  ecmaVersion: 2020
+  sourceType: "module"
+
+rules:
+  # ── Errors ────────────────────────────────────────────────────────────────────
+  no-unused-vars:
+    - error
+    - argsIgnorePattern: "^_"
+  no-undef: error
+  no-console:
+    - warn
+    - allow:
+        - "warn"
+        - "error"
+
+  # ── Style (Prettier handles formatting; ESLint handles logic style) ───────────
+  eqeqeq:
+    - error
+    - "always"
+  prefer-const: error
+  no-var: error
+
+  # ── localStorage access ───────────────────────────────────────────────────────
+  # localStorage is used intentionally in ui.js for theme persistence.
+  # This is not flagged as an error — the rule below is a reminder comment only.
+  # Do not use localStorage in quotes.js or any future JS file added to this project.
+  no-restricted-globals: off

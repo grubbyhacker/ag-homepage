@@ -1,0 +1,46 @@
+---
+extends: default
+
+rules:
+  # ── Indentation ───────────────────────────────────────────────────────────────
+  indentation:
+    spaces: 2
+    indent-sequences: true
+    check-multi-line-strings: false
+
+  # ── Line length ───────────────────────────────────────────────────────────────
+  line-length:
+    max: 120
+    level: warning  # Long lines are a warning, not an error — prose values can be long
+
+  # ── Quoting ───────────────────────────────────────────────────────────────────
+  # Enforce quoted strings to prevent implicit type coercion
+  # 'only-when-needed' is the default; we override to 'always' to match the spec rule
+  quoted-strings:
+    quote-type: "double"
+    required: true
+    extra-allowed:
+      - "[0-9]+"       # Pure integers do not need quoting
+      - "^(true|false)$"  # Intentional booleans do not need quoting
+
+  # ── Document structure ────────────────────────────────────────────────────────
+  document-start:
+    present: false   # Do not require --- at the start of every file
+                     # (hugo.yaml and data files omit it by convention)
+
+  # ── Duplication ───────────────────────────────────────────────────────────────
+  key-duplicates: enable
+
+  # ── Truthy values ─────────────────────────────────────────────────────────────
+  # Flag bare yes/no/on/off — these must be quoted if used as strings
+  truthy:
+    allowed-values:
+      - "true"
+      - "false"
+    check-keys: false
+
+ignore: |
+  public/
+  resources/
+  .git/
+  node_modules/
