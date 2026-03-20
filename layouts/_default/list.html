@@ -1,4 +1,3 @@
-{# djlint:off #}
 {{ define "main" }}
   {{ if eq .RelPermalink (printf "/%s/" .Section) }}
     {{ partial "user-hub.html" . }}
@@ -15,4 +14,3 @@
     </div>
   {{ end }}
 {{ end }}
-{# djlint:on #}

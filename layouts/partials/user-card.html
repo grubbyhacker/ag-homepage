@@ -1,4 +1,3 @@
-{# djlint:off #}
 <article class="user-card">
   <a href="{{ (printf "/%s/" .profile.username) | relURL }}">
     {{ if .profile.avatar }}
@@ -9,4 +8,3 @@
     <h3>{{ .profile.display_name }}</h3>
   </a>
 </article>
-{# djlint:on #}
