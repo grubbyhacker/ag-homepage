@@ -23,6 +23,7 @@ Read the domain instruction file that covers your task:
 | `assets/scss/` | `.agent/scss-conventions.md` |
 | `layouts/`, `archetypes/`, `hugo.yaml` | `.agent/hugo-conventions.md` |
 | `.github/workflows/` or `tests/` | `.agent/ci-and-testing.md` |
+| opening a Pull Request | `.agent/pull-requests.md` |
 | Anything, at the end of your task | `.agent/janitor.md` (post-task checklist) |
 | Before opening any PR | `docs/workflows/branching.md` |
 
@@ -94,6 +95,9 @@ When CI reports a formatting failure, agents must iterate until it is resolved â
 4. Commit once `make lint` exits zero
 
 Never disable a lint rule globally to make a check pass. File-level or block-level suppressions are permitted only when the formatter's output would be semantically incorrect. Every suppression must have a comment explaining why.
+
+**13. Do not fight WSL/Windows line endings.**  
+We have a `.gitattributes` file enforcing `* text=auto eol=lf`. Git will automatically convert Windows CRLF to LF upon commit. Do not attempt to run `sed`, `dos2unix`, or manually strip `\r` from files just because a devcontainer linter complains about CRLF. If `yamllint` or `prettier` complains about `expected \n`, it simply means the file is in your local Windows working directory with CRLF and hasn't been added to Git yet. Rely on `git add` to do the conversion natively.
 
 ---
 
