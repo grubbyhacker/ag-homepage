@@ -1,0 +1,22 @@
+services:
+  devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    ports:
+      - "1313:1313"
+    command: /bin/bash
+    stdin_open: true
+    tty: true
+
+  playwright:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: /bin/bash

@@ -81,7 +81,7 @@ For initial implementation, use plausible file paths for all image references (`
 
 ### Blog post
 
-```
+```text
 content/{username}/blog/{year}/{slug}/index.md
 ```
 
@@ -91,7 +91,7 @@ The directory name is the slug. Use kebab-case. Keep slugs short and descriptive
 
 ### Gallery card
 
-```
+```text
 content/{username}/gallery/{slug}/index.md
 ```
 
@@ -99,7 +99,7 @@ Example: `content/carol/gallery/lone-star-medallion/index.md`
 
 ### About page
 
-```
+```text
 content/{username}/about/index.md
 ```
 
@@ -137,6 +137,7 @@ summary: "A practical walkthrough of leader election and log replication in Raft
 **Voice:** Each user has a distinct voice. Alice is precise and slightly wry. Bob is enthusiastic and self-deprecating. Carol is methodical and specific. Dave is reflective and observational. Eve is direct and technically dense. Frank is nostalgic but technically grounded. Write in that voice.
 
 **Structure:** Most posts should have:
+
 - An opening paragraph that establishes the problem or context
 - Two to five body sections (using `##` headings)
 - A closing paragraph or takeaway

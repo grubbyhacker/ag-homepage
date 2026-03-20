@@ -25,7 +25,7 @@ To verify your own work: search the file you just wrote for `#` followed by thre
 
 ## File Responsibilities
 
-```
+```text
 assets/scss/
 ├── main.scss             # @use imports only. No rules. No variables. No properties.
 ├── _tokens.scss          # Comment-only contract. Lists every valid --color-* token name.
@@ -284,6 +284,7 @@ make lint-scss      # check only, exits non-zero on violations
 Prettier is configured in `.prettierrc.yaml`. YAML files are excluded from Prettier via `.prettierignore` — do not add YAML handling to Prettier.
 
 After running `make format-scss`, your SCSS will have:
+
 - 2-space indentation
 - A space before every opening `{`
 - A newline after every `}`

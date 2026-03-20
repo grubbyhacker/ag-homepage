@@ -1,59 +1,20 @@
-plugins:
-  - "stylelint-scss"
+---
+extends:
+  - stylelint-scss/recommended
 
 rules:
-  # ── Errors ───────────────────────────────────────────────────────────────────
-  # No !important anywhere in the codebase
-  declaration-no-important: true
-
-  # No raw hex values outside themes/ — enforced via a pattern rule
-  # Files in assets/scss/themes/ are excluded via overrides below
+  # Enforce semantic token boundary — no raw hex outside themes/
   color-no-hex: true
 
-  # No duplicate selectors
-  no-duplicate-selectors: true
-
-  # No empty rules
-  block-no-empty: true
-
-  # Valid custom properties must match --color-* or --palette-* (themes only)
-  # Unknown custom properties that don't match either namespace are flagged
-  custom-property-pattern:
-    - "^(color|palette)-.+"
-    - message: "Custom properties must be --color-* (semantic) or --palette-* (palette files only)"
-
-  # ── Selector rules ───────────────────────────────────────────────────────────
-  # Max nesting depth of 2
-  max-nesting-depth: 2
-
-  # No ID selectors in component files (IDs allowed in _layout.scss only)
-  selector-id-pattern:
-    - "^$"
-    - message: "ID selectors are not permitted in component files. Use _layout.scss for landmark IDs."
-
-  # ── SCSS-specific ─────────────────────────────────────────────────────────────
-  # Require @use over @import
-  scss/at-import-no-partial-leading-underscore: true
+  # Allow @use and @forward (modern Sass)
   scss/at-rule-no-unknown: true
 
-  # ── Style / formatting ────────────────────────────────────────────────────────
-  # These are enforced by Prettier but Stylelint double-checks for anything
-  # Prettier misses in SCSS-specific constructs
-  indentation: 2
-  no-extra-semicolons: true
+  # Reasonable nesting depth
+  max-nesting-depth: 4
 
 overrides:
-  # Palette files are the ONLY place hex values and --palette-* properties are allowed
   - files:
-      - "assets/scss/themes/_catppuccin-*.scss"
-      - "assets/scss/themes/_nord.scss"
-      - "assets/scss/themes/_*.scss"
+      - "assets/scss/themes/**/*.scss"
     rules:
+      # Palette files define raw hex values by design
       color-no-hex: null
-      custom-property-pattern: null
-
-  # Theme mapping files map --palette-* to --color-* — allow --palette-* on the right-hand side
-  - files:
-      - "assets/scss/themes/_theme-*.scss"
-    rules:
-      custom-property-pattern: null

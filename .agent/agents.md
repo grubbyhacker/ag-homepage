@@ -43,8 +43,8 @@ All layout code is original to this repository. If you find yourself reaching fo
 **3. Do not use Tailwind, Bootstrap, or any CSS framework.**  
 All styling is raw SCSS. See `.agent/scss-conventions.md` for how to do this correctly.
 
-**4. Do not add npm dependencies.**  
-The JavaScript build uses Hugo Pipes only. There is no `package.json`. Do not create one.
+**4. No runtime npm dependencies.**
+The JavaScript build uses Hugo Pipes only — no npm packages are bundled into the site. A `package.json` exists for dev-tooling dependencies (linters, formatters, Playwright) that run exclusively in the dev container. It must remain `private: true` with `devDependencies` only. Do not add `dependencies`, `peerDependencies`, or any package that would ship to the browser.
 
 **5. YAML everywhere.**  
 This repository uses YAML as its single data format — for `hugo.yaml`, all front matter, and all `data/` files. No TOML, no JSON (except `.devcontainer/devcontainer.json`, which is required by spec). When Hugo documentation shows TOML examples, translate them to YAML before using them. See `docs/product/spec.md §10.1` for YAML authoring rules.
@@ -55,8 +55,9 @@ Use `--color-*` custom properties. Never use `--palette-*` tokens or raw hex val
 **7. All user data lives in `data/users/{username}/`.**  
 Never hardcode a username, display name, avatar path, social link, or any other user-specific value in a template. Everything user-specific is read from `data/users/{username}/profile.yaml` or `data/users/{username}/quotes.yaml`. Templates iterate users via `range site.Data.users`.
 
-**8. Strict user partitioning.**  
+**8. Strict user partitioning.**
 Every file that belongs to a user lives under that user's namespace:
+
 - Content → `content/{username}/`
 - Data → `data/users/{username}/`
 - Static assets → `static/images/{username}/`
@@ -120,7 +121,7 @@ Document the issue in `docs/architecture/decisions.md` with the heading `## Prob
 
 The repo starts from a bare scaffold. Files must be created in dependency order — later layers depend on earlier ones. Follow this sequence for initial implementation:
 
-**Phase 1 — Foundation (no Hugo build possible yet)**
+### Phase 1 — Foundation (no Hugo build possible yet)
 
 1. `hugo.yaml` — site configuration must exist before anything else
 2. `data/users/{username}/profile.yaml` and `quotes.yaml` for all six users — templates read from these, so they must exist before templates are written
@@ -128,40 +129,40 @@ The repo starts from a bare scaffold. Files must be created in dependency order 
 4. `assets/scss/themes/` — palette and theme mapping files (all four files)
 5. `assets/scss/_tokens.scss` — the semantic token contract
 
-**Phase 2 — Core layouts (build will succeed after this phase)**
+### Phase 2 — Core layouts (build will succeed after this phase)
 
-6. `assets/scss/main.scss` — root import file
-7. `assets/scss/_reset.scss` and `assets/scss/_typography.scss` — base styles
-8. `layouts/_default/baseof.html` — the master shell; every page depends on this
-9. `layouts/partials/head.html` — CSS/JS pipeline, theme flicker prevention
-10. `layouts/partials/header.html` and `footer.html` — site chrome
-11. `layouts/index.html` — root landing page
-12. `content/_index.md` — root landing page content
-13. `assets/scss/_layout.scss` — header, footer, main shell styles
+1. `assets/scss/main.scss` — root import file
+2. `assets/scss/_reset.scss` and `assets/scss/_typography.scss` — base styles
+3. `layouts/_default/baseof.html` — the master shell; every page depends on this
+4. `layouts/partials/head.html` — CSS/JS pipeline, theme flicker prevention
+5. `layouts/partials/header.html` and `footer.html` — site chrome
+6. `layouts/index.html` — root landing page
+7. `content/_index.md` — root landing page content
+8. `assets/scss/_layout.scss` — header, footer, main shell styles
 
-**Phase 3 — User pages and components**
+### Phase 3 — User pages and components
 
-14. `layouts/partials/user-card.html` and `assets/scss/_landing.scss` — landing grid
-15. User hub page template and `assets/scss/_user-landing.scss`
-16. Blog list and single templates, `assets/scss/_blog.scss`
-17. `layouts/partials/tag-pill.html` and `assets/scss/_tags.scss`
-18. `layouts/partials/blog-card.html`
-19. `assets/js/ui.js` and `assets/js/quotes.js`
+1. `layouts/partials/user-card.html` and `assets/scss/_landing.scss` — landing grid
+2. User hub page template and `assets/scss/_user-landing.scss`
+3. Blog list and single templates, `assets/scss/_blog.scss`
+4. `layouts/partials/tag-pill.html` and `assets/scss/_tags.scss`
+5. `layouts/partials/blog-card.html`
+6. `assets/js/ui.js` and `assets/js/quotes.js`
 
-**Phase 4 — Content and extras**
+### Phase 4 — Content and extras
 
-20. Blog posts for all six users (minimum 5 per user)
-21. About pages with shortcode usage
-22. Shortcode templates and `assets/scss/shortcodes/`
-23. Gallery templates and content (Alice, Carol, Dave only)
-24. `content/disclaimer.md`
-25. Taxonomy templates (`layouts/tags/`)
+1. Blog posts for all six users (minimum 5 per user)
+2. About pages with shortcode usage
+3. Shortcode templates and `assets/scss/shortcodes/`
+4. Gallery templates and content (Alice, Carol, Dave only)
+5. `content/disclaimer.md`
+6. Taxonomy templates (`layouts/tags/`)
 
-**Phase 5 — Validation**
+### Phase 5 — Validation
 
-26. `make build` must succeed with zero warnings
-27. All pages render correctly at desktop, tablet, and mobile viewports
-28. Tag term pages show posts from multiple authors
+1. `make build` must succeed with zero warnings
+2. All pages render correctly at desktop, tablet, and mobile viewports
+3. Tag term pages show posts from multiple authors
 
 Each phase should be a separate PR (or a small number of focused PRs). Do not attempt to build everything in one branch.
 

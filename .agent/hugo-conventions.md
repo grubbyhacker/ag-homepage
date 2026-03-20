@@ -13,6 +13,7 @@ Hugo resolves templates by walking a lookup order. Understanding it prevents bot
 **For a page at `/alice/blog/2025/my-post/`:**
 
 Hugo looks for a single template in this order (first match wins):
+
 1. `layouts/alice/blog/single.html`
 2. `layouts/alice/single.html`
 3. `layouts/blog/single.html`
@@ -78,6 +79,7 @@ The canonical pattern for iterating all enabled users is:
 ### Whitespace Control
 
 Hugo templates emit whitespace wherever there is whitespace in the template source. Use `{{-` and `-}}` (dash variants) to trim surrounding whitespace. In general:
+
 - Use `{{-` at the start of block-level template tags
 - Use `-}}` at the end when the next thing in the output is also block-level
 - Inline content (inside `<p>` tags etc.) does not need dash trimming
@@ -228,12 +230,14 @@ Dates must be quoted strings (`"2025-03-15"`) to prevent YAML's date coercion fr
 
 When adding a new configuration key, follow the exact YAML structure of the existing `hugo.yaml`. Do not introduce TOML syntax (`[section]`, `key = value`). Do not add keys that are not documented in the Hugo configuration reference or this spec. If a Hugo docs example shows TOML, translate it:
 
+<!-- markdownlint-disable MD038 -->
 | TOML | YAML equivalent |
 |---|---|
 | `[params]` | `params:` |
-| `  key = "value"` | `  key: "value"` |
+| `  key = "value"` | `key: "value"` |
 | `[markup.highlight]` | `markup:` / `  highlight:` |
 | `  style = "mocha"` | `    style: "mocha"` |
+<!-- markdownlint-enable MD038 -->
 
 ---
 

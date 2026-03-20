@@ -1,18 +1,8 @@
-printWidth: 100
+---
 tabWidth: 2
 useTabs: false
-singleQuote: false
 semi: true
-trailingComma: "es5"
-
-overrides:
-  - files: "*.scss"
-    options:
-      singleQuote: false
-      printWidth: 100
-
-  - files: "*.js"
-    options:
-      printWidth: 100
-      semi: true
-      singleQuote: false
+singleQuote: false
+trailingComma: none
+printWidth: 100
+bracketSpacing: true

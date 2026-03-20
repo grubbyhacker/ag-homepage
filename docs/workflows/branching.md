@@ -8,7 +8,7 @@
 
 ## Branch Hierarchy
 
-```
+```text
 main
  └── staging
       └── feature/*, fix/*, content/*, chore/*  (all work branches)
@@ -32,6 +32,7 @@ Nobody pushes directly to `main`. Ever. This is enforced by a GitHub branch prot
 The "severe emergency" exception mentioned informally is not a workflow — it is the absence of a workflow for a situation that should never arise on a static site. If the live site is broken, the correct fix is a PR to `staging` that passes CI, not a force push to `main`.
 
 Agents must never:
+
 - Push directly to `main` or `staging`
 - Open a PR that targets `main`
 - Attempt to bypass branch protection rules
@@ -42,7 +43,7 @@ Agents must never:
 
 Every piece of work — a new feature, a content addition, a bug fix, a formatting correction — follows this path:
 
-```
+```text
 1. Create a feature branch from staging
 2. Do the work
 3. Run make format && make lint && make build locally
@@ -66,7 +67,8 @@ Branch names use a type prefix and a short kebab-case description:
 | `experiment/` | Exploratory work that may not merge |
 
 Examples:
-```
+
+```text
 feature/gallery-carousel
 fix/header-nav-alignment
 content/alice-blog-posts
@@ -121,6 +123,7 @@ Do not mark a PR as ready for review while CI is failing. Do not ask the human r
 The human reviewer (repository owner) is the only person who approves PRs to `staging`. Agents do not approve their own PRs or each other's PRs.
 
 When a PR is ready for human review:
+
 - CI must be passing (all checks green except the informational screenshot check)
 - The branch must be up to date with `staging`
 - The PR description must be complete
@@ -186,6 +189,7 @@ There is no scheduled release cadence. The human promotes staging to main when t
 For reference, these are the GitHub branch protection settings that enforce the above:
 
 **`main`:**
+
 - Require a pull request before merging
 - Require approvals: 1 (repository owner)
 - Dismiss stale pull request approvals when new commits are pushed
@@ -193,6 +197,7 @@ For reference, these are the GitHub branch protection settings that enforce the 
 - Do not allow bypassing the above settings
 
 **`staging`:**
+
 - Require a pull request before merging
 - Require approvals: 1 (repository owner)
 - Require status checks to pass before merging (`ci / build`, `ci / lint`, `ci / test`)

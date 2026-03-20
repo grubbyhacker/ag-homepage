@@ -1,0 +1,27 @@
+{
+  "name": "ag-homepage",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "budparr.language-hugo-vscode",
+        "esbenp.prettier-vscode",
+        "stylelint.vscode-stylelint",
+        "dbaeumer.vscode-eslint",
+        "davidanson.vscode-markdownlint",
+        "ms-playwright.playwright",
+        "redhat.vscode-yaml"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[scss]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+      }
+    }
+  }
+}

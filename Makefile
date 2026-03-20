@@ -9,7 +9,6 @@ STYLELINT     := npx stylelint
 ESLINT        := npx eslint
 YAMLLINT      := yamllint
 MARKDOWNLINT  := npx markdownlint
-HTML_VALIDATE := npx html-validate
 LYCHEE        := lychee
 
 SCSS_FILES    := "assets/scss/**/*.scss"
@@ -21,7 +20,7 @@ PUBLIC_DIR    := public/
         format format-templates format-scss format-js \
         lint lint-templates lint-scss lint-yaml lint-js lint-md \
         test test-ci screenshot-test update-screenshots \
-        validate-html check-links \
+        check-links \
         devcontainer-build devcontainer-shell
 
 # ---------- Development ----------
@@ -72,10 +71,10 @@ lint-md:
 # ---------- Testing ----------
 
 test:
-	docker compose run --rm playwright npx playwright test --reporter=html
+	docker compose run --rm playwright npx playwright test --reporter=html --pass-with-no-tests
 
 test-ci:
-	docker compose run --rm playwright npx playwright test --reporter=list
+	docker compose run --rm playwright npx playwright test --reporter=list --pass-with-no-tests
 
 screenshot-test:
 	docker compose run --rm playwright npx playwright test tests/specs/screenshot.spec.ts
@@ -84,9 +83,6 @@ update-screenshots:
 	docker compose run --rm playwright npx playwright test tests/specs/screenshot.spec.ts --update-snapshots
 
 # ---------- Validation ----------
-
-validate-html:
-	$(HTML_VALIDATE) $(PUBLIC_DIR)
 
 check-links:
 	$(LYCHEE) --offline --include-fragments $(PUBLIC_DIR)

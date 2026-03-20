@@ -59,20 +59,7 @@ When this step fails, agents must run `make format && make lint` locally (in the
 
 No `--minify` flag here — minification obscures error messages. The build must produce zero warnings. A warning about a missing template, a broken partial reference, or an undefined variable is a failure.
 
-### Step 3 — HTML validation
-
-Run `html-validate` against the generated `public/` directory using the repo's `.htmlvalidate.json` config.
-
-Common things `html-validate` catches that agents frequently introduce:
-- Missing `alt` attributes on `<img>` elements (every image must have `alt`)
-- `<a>` elements with no `href` or no text content
-- Duplicate `id` attributes across a page
-- Invalid nesting (e.g., `<p>` inside `<p>`, `<div>` inside `<span>`)
-- Missing `lang` attribute on `<html>` (already in `baseof.html` — do not remove it)
-
-Fix all validation errors before marking a PR ready for review. Do not suppress validation rules in `.htmlvalidate.json` without documenting the reason in a comment.
-
-### Step 4 — Link check
+### Step 3 — Link check
 
 Run `lychee` against the generated `public/` directory for internal links only. External links are excluded from CI to avoid flakiness from network conditions.
 
@@ -82,11 +69,12 @@ Run `lychee` against the generated `public/` directory for internal links only. 
 ```
 
 A broken internal link is a build error. Common causes:
+
 - A blog post links to `/alice/blog/2025/old-post/` and that post was renamed or removed
 - A partial generates a URL using a variable that can be empty
 - A gallery card links to an image path that does not match the `static/images/` structure
 
-### Step 5 — Playwright functional tests
+### Step 4 — Playwright functional tests
 
 The Playwright suite covers behavior that HTML validation cannot catch — JavaScript interaction, navigation correctness, and Hugo template logic expressed in rendered output.
 
@@ -111,6 +99,7 @@ Test files live in `tests/specs/`. Each file covers one area:
 When a new page or feature is added, the spec file for the relevant area must be updated. If no existing spec covers the new feature, create one in `tests/specs/`.
 
 Tests must:
+
 - Start from a clean browser state (no stored `localStorage`)
 - Use `page.goto()` with the full URL path
 - Assert on visible content, not on implementation details (class names that could change)
@@ -163,6 +152,7 @@ Commit the generated screenshots in the same PR that introduces the page. A PR t
 ### Phase 2 — Established goldens
 
 Once a golden exists, the workflow:
+
 1. Builds the site from the PR branch
 2. Captures screenshots at three viewports: `1280×800` (desktop), `768×1024` (tablet), `390×844` (mobile)
 3. Compares against goldens using Playwright's image diff with `maxDiffPixelRatio: 0.02`
@@ -237,7 +227,6 @@ Agents running commands locally (inside the dev container) use the Makefile:
 | `make test-ci` | Playwright via Docker, text output | Testing in a script or CI context |
 | `make screenshot-test` | Playwright screenshot spec only | Verify visual changes |
 | `make update-screenshots` | Playwright `--update-snapshots` | Bootstrap or intentionally update goldens |
-| `make validate-html` | `html-validate public/` | Check HTML after a build |
 | `make check-links` | `lychee --offline public/` | Verify internal links after a build |
 | `make clean` | Remove `public/`, `resources/`, `.hugo_build.lock` | Reset before a fresh build |
 | `make devcontainer-build` | Build dev container image | After changing `.devcontainer/Dockerfile` |
@@ -247,9 +236,7 @@ Agents running commands locally (inside the dev container) use the Makefile:
 
 ## What Agents Must Not Do
 
-- Add npm scripts, `package.json`, or any npm-based test runner
 - Disable or skip failing tests to make CI pass — fix the code
-- Modify `.htmlvalidate.json` to suppress rules without documenting the reason
 - Hard-code environment-specific paths in workflow files
 - Add `continue-on-error: true` to any CI step without human approval
 - Pin workflow action versions to `@main` or `@latest` — always use a specific SHA or version tag

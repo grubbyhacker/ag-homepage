@@ -1,0 +1,16 @@
+---
+# Use defaults with project-specific overrides
+default: true
+
+# Allow long lines — content and docs often have long URLs and tables
+MD013: false
+
+# Allow multiple top-level headings — spec and agent docs use them
+MD025: false
+
+# Allow inline HTML — Hugo shortcode output may include it
+MD033: false
+
+# Allow duplicate headings in different sections
+MD024:
+  siblings_only: true

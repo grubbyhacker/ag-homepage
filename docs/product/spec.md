@@ -42,7 +42,7 @@ These terms are used precisely throughout this specification and all agent instr
 
 The following tree is **canonical**. Agents must not create directories or move files outside of this structure without explicit human approval. This constraint is enforced by agent instructions.
 
-```
+```text
 .
 ├── .agent/                        # Agent instruction files (see Section 12)
 │   ├── agents.md                  # Root agent entrypoint and ground rules
@@ -180,6 +180,8 @@ The following tree is **canonical**. Agents must not create directories or move 
 ├── flake.nix
 ├── flake.lock
 ├── .envrc
+├── package.json                       # Dev-tooling dependencies only (private, devDependencies)
+├── package-lock.json                  # Locked versions for npm ci in Dockerfile
 ├── Makefile
 ├── hugo.yaml
 ├── .djlintrc                          # djlint config for Hugo template formatting
@@ -188,8 +190,7 @@ The following tree is **canonical**. Agents must not create directories or move 
 ├── .stylelintrc.yaml                  # Stylelint config for SCSS correctness
 ├── .yamllint.yaml                     # yamllint config for all YAML files
 ├── .eslintrc.yaml                     # ESLint config for JS files
-├── .markdownlint.json                 # markdownlint config for content and docs
-├── .htmlvalidate.json                 # html-validate config for generated HTML
+├── .markdownlint.yaml                 # markdownlint config for content and docs
 └── README.md
 ```
 
@@ -291,6 +292,7 @@ The light theme file follows the identical structure, reading from a different p
 **What changes when you swap a palette:**
 
 To replace Catppuccin Mocha with Nord as the dark palette, an agent (or human) would:
+
 1. Create `assets/scss/themes/_nord.scss` with Nord's hex values under the same `--palette-*` names.
 2. In `_theme-dark.scss`, change the one `@use` import from `catppuccin-mocha` to `nord`.
 3. Update `hugo.yaml` `chroma_style_dark` to the nearest matching Chroma style name.
@@ -409,7 +411,7 @@ Each user is configured entirely under `data/users/{username}/`. No user-specifi
 
 ### 6.1 Directory Structure Per User
 
-```
+```text
 data/users/{username}/
     profile.yaml      # Identity, features, social links
     quotes.yaml       # Rotating quotes for the hub page
@@ -806,7 +808,7 @@ The `catppuccin-mocha` Chroma style is used for dark mode. Light mode uses `catp
 
 The `highlight-file` shortcode allows embedding a file from the repo with full syntax highlighting and a filename caption:
 
-```
+```text
 {{< highlight-file file="assets/scss/main.scss" lang="scss" >}}
 ```
 
@@ -910,7 +912,7 @@ Five callout variants. Each wraps inner markdown content in a styled box with a 
 
 Usage:
 
-```
+```text
 {{< warning title="Breaking Change" >}}
 This API was removed in v2. Use `newFunction()` instead.
 {{< /warning >}}
@@ -922,19 +924,19 @@ The `title` parameter overrides the default label. If omitted, the default label
 
 **`resume-role`** — Renders a role title left-aligned and date range right-aligned on the same line:
 
-```
+```text
 {{< resume-role title="Senior Staff Engineer" dates="Jan 2021 – Nov 2024" >}}
 ```
 
 **`resume-org`** — Renders an organization name with optional location and URL:
 
-```
+```text
 {{< resume-org name="Acme Corp" location="San Francisco, CA" url="https://acme.com" >}}
 ```
 
 **`profile-intro`** — Renders a headshot floated left with a markdown attribute list:
 
-```
+```text
 {{< profile-intro image="/images/alice/headshot.jpg" alt="Alice's headshot" >}}
 * **Role:** Principal Engineer
 * **Location:** Seattle, WA
@@ -945,7 +947,7 @@ The `title` parameter overrides the default label. If omitted, the default label
 
 **`showcase`** — A highlighted feature block with an optional image and a text body. Used for calling out projects, portfolio items, or key achievements within prose:
 
-```
+```text
 {{< showcase title="Open Source Contribution" image="/images/bob/widget.png" >}}
 Contributed the widget feature to the Acme project. **2,000+ stars** on GitHub.
 {{< /showcase >}}
@@ -953,7 +955,7 @@ Contributed the widget feature to the Acme project. **2,000+ stars** on GitHub.
 
 **`list-columns`** — Renders a markdown list in two or three columns. Useful for skills lists on resumes:
 
-```
+```text
 {{< list-columns cols="2" >}}
 - Go
 - Rust
@@ -982,10 +984,9 @@ Triggered on push to `main`. Steps:
 Triggered on all pull requests. Steps:
 
 1. Build Hugo site (same as deploy but without minify for better error messages).
-2. **HTML validation:** Run [html-validate](https://html-validate.org/) against the generated `public/` directory. The configuration (`.htmlvalidate.json`) lives in the repo root.
-3. **Link check:** Run a link checker (e.g., `lychee`) against internal links in the generated output.
-4. **Playwright tests:** Build the site, start Hugo's built-in server, run all `tests/specs/*.spec.ts` suites.
-5. Post a summary comment on the PR with pass/fail counts for each step.
+2. **Link check:** Run a link checker (e.g., `lychee`) against internal links in the generated output.
+3. **Playwright tests:** Build the site, start Hugo's built-in server, run all `tests/specs/*.spec.ts` suites.
+4. Post a summary comment on the PR with pass/fail counts for each step.
 
 ### 12.3 Screenshot Workflow (`.github/workflows/screenshots.yml`)
 
@@ -1047,7 +1048,6 @@ Once a golden file exists in the repo, it is the ground truth. Any PR that chang
 | `make test-ci` | Same, text output only |
 | `make screenshot-test` | Screenshot comparison tests only |
 | `make update-screenshots` | Capture new goldens (updates committed files) |
-| `make validate-html` | Run html-validate against `public/` |
 | `make check-links` | Run lychee link checker |
 | `make devcontainer-build` | Build the dev container image |
 | `make devcontainer-shell` | Open a shell inside the dev container |
@@ -1080,7 +1080,7 @@ The `.agent/` directory contains instruction documents that govern how AI agents
 8. **DRY — but only when the generalization is already needed.** Extract a partial, variable, or mixin when the same pattern appears in two or more places that will clearly need to stay in sync. Do not pre-emptively abstract things on the assumption they might be reused. Premature generalization adds indirection without benefit and makes the codebase harder to read.
 9. **Leave no residue.** When fixing a bug, changing a feature, or refactoring, remove all code, config, content, and data that the change made obsolete. Orphaned SCSS classes, unused partials, stale data files, and commented-out template code are not acceptable. If you are unsure whether something is still needed, check before leaving it.
 10. **All tooling must run in the dev container.** Any tool, script, or workflow step that an agent executes must work inside the `.devcontainer` environment. Agents must never assume local tools (Hugo, Playwright, Nix) are available on the host; they must use `make devcontainer-shell` or the equivalent Docker invocation. This ensures agents can run safely in GitHub Codespaces, CI environments, and any other sandboxed execution context — not just a developer's personal laptop.
-11. **Validate your own output.** After making any change to layouts or SCSS, run `make validate-html` mentally or actually (if in a container). After any content change, confirm the Hugo build succeeds without warnings.
+11. **Validate your own output.** After making any change to layouts or SCSS, run `make build` and `make check-links` to verify correctness. After any content change, confirm the Hugo build succeeds without warnings.
 
 ### 13.2 The Janitor Responsibility
 

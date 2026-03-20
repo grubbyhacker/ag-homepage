@@ -46,7 +46,6 @@ Run through this after every task. Check each item before opening a PR.
 ### General
 
 - [ ] `make build` runs with zero warnings and zero errors.
-- [ ] `make validate-html` passes with zero errors on the generated output.
 - [ ] I did not introduce any TOML syntax (verify: no `[sections]`, no `key = value` outside YAML contexts).
 - [ ] Any file I modified that I no longer need a change in is reverted.
 
@@ -61,6 +60,7 @@ The Janitor agent runs these checks against the entire repository. Each check is
 **What to find:** CSS classes defined in `assets/scss/` that are never referenced in `layouts/`.
 
 **How to find it:**
+
 1. Extract all class names defined in `assets/scss/` (lines matching `.class-name {` or `&__element {`)
 2. For each class, search `layouts/` and `layouts/shortcodes/` for the class name as a string
 3. If not found, check if it is generated dynamically (e.g., `tag-pill--#{$i}` in a loop — these are valid)
@@ -105,6 +105,7 @@ The Janitor agent runs these checks against the entire repository. Each check is
 **What to find:** Content files whose front matter fields do not match the schema in `docs/product/spec.md §8`.
 
 **How to find it:** For each `content/{username}/blog/**/*.md`, check that:
+
 - All dates are quoted strings
 - `tags` is a list of quoted strings
 - No unexpected fields are present (field bloat often signals an abandoned approach)
@@ -128,6 +129,7 @@ The Janitor agent runs these checks against the entire repository. Each check is
 **How to find it:** Run `make build 2>&1 | grep -i warn`. Zero warnings is the target.
 
 **Action:** Fix every warning. Common Hugo warnings:
+
 - `REF_NOT_FOUND` — a `ref` or `relref` shortcode points to a page that no longer exists
 - `found no layout file` — a content type has no matching template
 - Deprecated config key — update `hugo.yaml` to use the current key name

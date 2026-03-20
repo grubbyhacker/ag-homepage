@@ -1,0 +1,17 @@
+{
+  "name": "ag-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hugo family site — dev tooling",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "eslint": "^8.57.0",
+    "markdownlint-cli": "^0.40.0",
+    "prettier": "^3.3.0",
+    "stylelint": "^16.0.0",
+    "stylelint-scss": "^6.0.0"
+  }
+}
