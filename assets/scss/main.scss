@@ -14,5 +14,10 @@
 @use "reset";
 @use "typography";
 
-// 5. Component styles
+// 5. Component styles (all reference --color-* only)
 @use "layout";
+@use "landing";
+@use "user-landing";
+@use "blog";
+@use "tags";
+@use "quotes";

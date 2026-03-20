@@ -1,0 +1,24 @@
+@use "layout-vars" as *;
+
+.tag-pill {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-family: ui-monospace, sfmono-regular, menlo, monaco, consolas, monospace;
+  transition: opacity 0.2s;
+
+  &:hover {
+    text-decoration: none;
+    opacity: 0.8;
+  }
+}
+
+@for $i from 1 through 10 {
+  .color-slot-#{$i} {
+    color: var(--color-tag-#{$i});
+    border: 1px solid var(--color-tag-#{$i});
+    background-color: color-mix(in srgb, var(--color-tag-#{$i}) 18%, transparent);
+  }
+}

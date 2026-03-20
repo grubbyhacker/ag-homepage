@@ -4,7 +4,6 @@
 <meta name="description"
       content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
 
-{{- /* Theme Script MUST run before render to avoid flicker */ -}}
 <script>
   const savedTheme = localStorage.getItem('theme');
   const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
@@ -13,7 +12,6 @@
   }
 </script>
 
-{{- /* Chroma Highlights */ -}}
 {{- $darkStyle  := site.Params.chroma_style_dark  | default "catppuccin-mocha" -}}
 {{- $lightStyle := site.Params.chroma_style_light | default "catppuccin-latte" -}}
 {{- $darkCSS := resources.Get (printf "css/chroma-%s.css" $darkStyle) -}}
@@ -31,8 +29,19 @@
       href="{{ $lightCSS.RelPermalink }}">
 {{- end -}}
 
-{{- /* Main SCSS */ -}}
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+
 {{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
 <link rel="stylesheet"
       href="{{ $style.RelPermalink }}"
       integrity="{{ $style.Data.Integrity }}">
+
+{{- /* JS Bundling */ -}}
+{{ $ui := resources.Get "js/ui.js" | minify | fingerprint }}
+<script src="{{ $ui.RelPermalink }}" integrity="{{ $ui.Data.Integrity }}" defer></script>
+{{ $quotes := resources.Get "js/quotes.js" | minify | fingerprint }}
+<script src="{{ $quotes.RelPermalink }}" integrity="{{ $quotes.Data.Integrity }}" defer></script>

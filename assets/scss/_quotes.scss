@@ -1,0 +1,30 @@
+@use "layout-vars" as *;
+
+.quotes-widget {
+  padding: 1.5rem;
+  background-color: var(--color-bg-sunken);
+  border-left: 4px solid var(--color-accent);
+  border-radius: 4px;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+
+  .quote-display {
+    margin: 0;
+    width: 100%;
+  }
+
+  .quote-text {
+    font-size: 1.25rem;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    color: var(--color-heading);
+    transition: opacity 0.3s ease;
+  }
+
+  .quote-attribution {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    transition: opacity 0.3s ease;
+  }
+}

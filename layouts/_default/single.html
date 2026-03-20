@@ -1,0 +1,46 @@
+{{ define "main" }}
+<article class="single-post">
+  <header class="post-header">
+    <h1 class="post-title">
+{{ .Title }}
+    </h1>
+    <div class="post-meta">
+      {{ if .Params.date }}
+      <span class="date">Published: <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format (site.Params.dateFormat | default "02 Jan 2006") }}</time></span>
+      {{ end }}
+      {{ if and .Params.lastmod (ne .Params.date .Params.lastmod) }}
+      <span class="date">Updated: <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format (site.Params.dateFormat | default "02 Jan 2006") }}</time></span>
+      {{ end }}
+      {{ if .ReadingTime }}
+      <span class="read-time">{{ .ReadingTime }} min read</span>
+      {{ end }}
+    </div>
+    {{ with .Params.tags }}
+    <div class="post-tags">
+      {{ range . }}
+        {{ partial "tag-pill.html" . }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+  <footer class="post-footer">
+    <div class="author-byline"
+         style="margin-top: 3rem;
+                padding-top: 1rem;
+                border-top: 1px solid var(--color-border)">
+      {{ $username := split .RelPermalink "/" | index 1 }}
+      {{ $user := index site.Data.users $username }}
+      {{ if $user }}
+      <p>
+              Written by <a href="/{{ $username }}/">{{ $user.profile.display_name }}</a>
+    </p>
+      {{ end }}
+  </div>
+</footer>
+</article>
+{{ end }}

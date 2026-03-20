@@ -1,0 +1,57 @@
+{{ $username := .Section }}
+{{ $user := index site.Data.users $username }}
+<div class="user-hub">
+  <header class="hub-header">
+    {{ if $user.profile.avatar }}
+    <img src="{{ $user.profile.avatar }}"
+         alt="{{ $user.profile.display_name }}"
+         class="hub-avatar">
+    {{ end }}
+    <div class="hub-identity">
+      <h1>
+{{ $user.profile.display_name }}
+      </h1>
+      {{ with $user.profile.tagline }}
+      <p class="tagline">
+{{ . }}
+      </p>
+{{ end }}
+    </div>
+  </header>
+
+  <div class="hub-social">
+    {{ partial "social-links.html" $user.profile.social }}
+  </div>
+
+  <div class="hub-quotes">
+    {{ partial "quotes-widget.html" $user.quotes }}
+  </div>
+
+  <div class="hub-nav-tiles">
+    {{ if $user.profile.features.about }}
+    <a href="/{{ $username }}/about/" class="nav-tile">About</a>
+    {{ end }}
+    {{ if $user.profile.features.blog }}
+    <a href="/{{ $username }}/blog/" class="nav-tile">Blog</a>
+    {{ end }}
+    {{ if $user.profile.features.gallery }}
+    <a href="/{{ $username }}/gallery/" class="nav-tile">Gallery</a>
+    {{ end }}
+  </div>
+
+  {{ if $user.profile.features.blog }}
+  <section class="hub-recent-posts">
+    <h2>
+Recent Posts
+    </h2>
+    {{ $blogSection := .Site.GetPage (printf "/%s/blog" $username) }}
+    {{ if $blogSection }}
+    <div class="list-layout">
+      {{ range first 3 $blogSection.RegularPages }}
+        {{ partial "blog-card.html" . }}
+      {{ end }}
+    </div>
+    {{ end }}
+  </section>
+  {{ end }}
+</div>

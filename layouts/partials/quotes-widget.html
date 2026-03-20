@@ -1,0 +1,13 @@
+{{ $quotesData := .quotes }}
+{{ if $quotesData }}
+<div class="quotes-widget"
+     id="quotes-widget"
+     data-quotes="{{ jsonify $quotesData | htmlEscape }}">
+  <blockquote class="quote-display">
+    <p class="quote-text" id="quote-text">
+    </p>
+    <footer class="quote-attribution" id="quote-attribution">
+    </footer>
+  </blockquote>
+</div>
+{{ end }}
