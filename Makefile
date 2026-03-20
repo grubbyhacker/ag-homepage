@@ -26,7 +26,8 @@ PUBLIC_DIR    := public/
 # ---------- Development ----------
 
 serve:
-	$(HUGO) server -D --baseURL=http://localhost:1313
+	git config --global --add safe.directory /workspace || true
+	$(HUGO) server -D --baseURL=http://localhost:1313 --bind 0.0.0.0
 
 build:
 	git config --global --add safe.directory /workspace

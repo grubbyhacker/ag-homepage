@@ -1,47 +1,31 @@
+{# djlint:off #}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-<meta name="description"
-      content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ with site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}">
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ site.Title }}{{ end }}{{ end }}">
 
 <script>
-  const savedTheme = localStorage.getItem('theme');
-  const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-  if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
+  (function() {
+    var stored = localStorage.getItem('theme');
+    var preferred = stored ? stored : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', preferred);
+  })();
 </script>
+
+{{- $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 
 {{- $darkStyle  := site.Params.chroma_style_dark  | default "catppuccin-mocha" -}}
 {{- $lightStyle := site.Params.chroma_style_light | default "catppuccin-latte" -}}
-{{- $darkCSS := resources.Get (printf "css/chroma-%s.css" $darkStyle) -}}
-{{- $lightCSS := resources.Get (printf "css/chroma-%s.css" $lightStyle) -}}
-{{- if $darkCSS -}}
-<link id="chroma-dark"
-      rel="stylesheet"
-      media="(prefers-color-scheme: dark)"
-      href="{{ $darkCSS.RelPermalink }}">
-{{- end -}}
-{{- if $lightCSS -}}
-<link id="chroma-light"
-      rel="stylesheet"
-      media="(prefers-color-scheme: light)"
-      href="{{ $lightCSS.RelPermalink }}">
-{{- end -}}
+{{- $chromaDark  := resources.Get (printf "css/chroma-%s.css" $darkStyle) | default (resources.Get "css/chroma-catppuccin-mocha.css") -}}
+{{- $chromaLight := resources.Get (printf "css/chroma-%s.css" $lightStyle) | default (resources.Get "css/chroma-catppuccin-latte.css") -}}
+{{- if $chromaDark -}}<link id="chroma-dark" rel="stylesheet" href="{{ $chromaDark.RelPermalink }}" media='[data-theme="dark"]'>{{- end -}}
+{{- if $chromaLight -}}<link id="chroma-light" rel="stylesheet" href="{{ $chromaLight.RelPermalink }}" media='[data-theme="light"]'>{{- end -}}
 
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
-{{ $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
-<link rel="stylesheet"
-      href="{{ $style.RelPermalink }}"
-      integrity="{{ $style.Data.Integrity }}">
-
-{{- /* JS Bundling */ -}}
-{{ $ui := resources.Get "js/ui.js" | minify | fingerprint }}
-<script src="{{ $ui.RelPermalink }}" integrity="{{ $ui.Data.Integrity }}" defer></script>
-{{ $quotes := resources.Get "js/quotes.js" | minify | fingerprint }}
-<script src="{{ $quotes.RelPermalink }}" integrity="{{ $quotes.Data.Integrity }}" defer></script>
+{{- $ui := resources.Get "js/ui.js" | minify | fingerprint -}}
+<script src="{{ $ui.RelPermalink }}" defer integrity="{{ $ui.Data.Integrity }}"></script>
+{{- $quotes := resources.Get "js/quotes.js" | minify | fingerprint -}}
+{{- if $quotes -}}<script src="{{ $quotes.RelPermalink }}" defer integrity="{{ $quotes.Data.Integrity }}"></script>{{- end -}}
+{# djlint:on #}
