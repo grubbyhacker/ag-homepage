@@ -1,0 +1,37 @@
+{{ define "main" }}
+<div class="landing-hero">
+    {{ .Content }}
+</div>
+<div class="user-grid"
+     style="display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem">
+    {{ range site.Data.users }}
+      {{ if .profile.enabled }}
+  <div class="user-card"
+       style="border: 1px solid var(--color-border);
+              padding: 1rem;
+              border-radius: 8px;
+              text-align: center;
+              background-color: var(--color-bg-sunken)">
+    <a href="/{{ .profile.username }}/">
+            {{ if .profile.avatar }}
+      <img src="{{ .profile.avatar }}"
+           alt="{{ .profile.display_name }}"
+           class="avatar"
+           style="width: 96px;
+                  height: 96px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  margin: 0 auto 1rem">
+            {{ end }}
+      <h3>
+{{ .profile.display_name }}
+      </h3>
+    </a>
+  </div>
+      {{ end }}
+    {{ end }}
+</div>
+{{ end }}

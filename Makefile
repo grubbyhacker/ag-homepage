@@ -29,6 +29,7 @@ serve:
 	$(HUGO) server -D --baseURL=http://localhost:1313
 
 build:
+	git config --global --add safe.directory /workspace
 	$(HUGO) --cleanDestinationDir
 
 clean:

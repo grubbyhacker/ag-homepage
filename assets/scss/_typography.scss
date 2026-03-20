@@ -1,0 +1,39 @@
+@use "layout-vars" as *;
+
+body {
+  font-family:
+    system-ui,
+    -apple-system,
+    blinkmacsystemfont,
+    "Segoe UI",
+    roboto,
+    sans-serif;
+  font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Georgia, serif;
+  color: var(--color-heading);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-link-hover);
+    text-decoration: underline;
+  }
+}
+
+code,
+pre,
+.monospace {
+  font-family: ui-monospace, sfmono-regular, menlo, monaco, consolas, monospace;
+}

@@ -1,0 +1,18 @@
+// 1. Layout variables
+@use "layout-vars" as *;
+
+// 2. Palette and theme layers
+@use "themes/catppuccin-mocha";
+@use "themes/catppuccin-latte";
+@use "themes/theme-dark";
+@use "themes/theme-light";
+
+// 3. Token contract
+@use "tokens";
+
+// 4. Base reset and typography
+@use "reset";
+@use "typography";
+
+// 5. Component styles
+@use "layout";
