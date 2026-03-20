@@ -1,0 +1,5 @@
+<div class="list-columns"
+     style="column-count: {{ .Get "cols" | default 2 }};
+            column-gap: 2rem">
+  {{ .Inner | markdownify }}
+</div>

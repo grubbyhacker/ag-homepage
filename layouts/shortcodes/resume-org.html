@@ -1,0 +1,13 @@
+<section class="resume-org">
+  <header class="resume-org__header">
+    <h3>
+{{ .Get "name" }}
+    </h3>
+    <div class="org-period">
+      {{ .Get "start" }} &ndash; {{ .Get "end" | default "Present" }}
+    </div>
+  </header>
+  <div class="resume-org__roles">
+    {{ .Inner | markdownify }}
+  </div>
+</section>

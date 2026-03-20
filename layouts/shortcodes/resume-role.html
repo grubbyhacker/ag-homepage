@@ -1,0 +1,15 @@
+<article class="resume-role">
+  <header class="resume-role__header">
+    <h4>
+{{ .Get "title" }}
+    </h4>
+    {{ with .Get "period" }}
+    <div class="role-period">
+{{ . }}
+    </div>
+    {{ end }}
+  </header>
+  <div class="resume-role__content">
+    {{ .Inner | markdownify }}
+  </div>
+</article>

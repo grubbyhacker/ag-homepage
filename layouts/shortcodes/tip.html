@@ -1,0 +1,6 @@
+<div class="callout callout--tip">
+  <div class="callout-title">
+    <i class="fa-solid fa-lightbulb"></i> {{ .Get "title" | default "Tip" }}
+  </div>
+  {{ .Inner | markdownify }}
+</div>

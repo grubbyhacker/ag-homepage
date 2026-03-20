@@ -21,3 +21,9 @@
 @use "blog";
 @use "tags";
 @use "quotes";
+@use "gallery";
+
+// 6. Shortcodes
+@use "shortcodes/callouts";
+@use "shortcodes/resume";
+@use "shortcodes/profile-intro";

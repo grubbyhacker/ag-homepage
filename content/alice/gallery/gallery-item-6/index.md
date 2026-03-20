@@ -1,0 +1,19 @@
+---
+title: Art Piece 6 by Alice
+date: '2024-05-06'
+draft: false
+image: https://picsum.photos/seed/alice6/800/600
+thumbnail: https://picsum.photos/seed/alice6/400/300
+summary: A beautiful showcase of digital art.
+metadata:
+  camera: Sony A7III
+  lens: 50mm f/1.8
+  location: Virtual Space
+---
+
+
+This gallery item showcases some of the finest visual work.
+
+{{< showcase image="https://picsum.photos/seed/alice6alt/600/400" >}}
+The process for creating this piece involved multiple stages of digital refinement. I started with a rough sketch and progressively layered the textures.
+{{< /showcase >}}

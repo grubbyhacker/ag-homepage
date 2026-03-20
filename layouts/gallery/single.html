@@ -1,0 +1,41 @@
+{{ define "main" }}
+<article class="gallery-single">
+  <div class="gallery-image-container">
+    {{ with .Params.image }}
+    <img src="{{ . }}" alt="{{ $.Title }}" class="gallery-image-hero">
+    {{ end }}
+  </div>
+
+  <header class="gallery-header">
+    <h1 class="gallery-title">
+{{ .Title }}
+    </h1>
+    {{ if .Params.date }}
+    <div class="gallery-meta">
+      <span class="date">{{ .Date.Format (site.Params.dateFormat | default "02 Jan 2006") }}</span>
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="gallery-body">
+    <div class="gallery-description">
+      {{ .Content }}
+    </div>
+
+    {{ with .Params.metadata }}
+    <aside class="gallery-metadata-card">
+      <dl class="metadata-list">
+        {{ range $key, $value := . }}
+        <dt>
+{{ replace $key "_" " " | title }}
+        </dt>
+        <dd>
+{{ $value }}
+        </dd>
+        {{ end }}
+      </dl>
+    </aside>
+    {{ end }}
+  </div>
+</article>
+{{ end }}

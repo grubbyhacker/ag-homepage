@@ -1,0 +1,6 @@
+<div class="callout callout--important">
+  <div class="callout-title">
+    <i class="fa-solid fa-circle-exclamation"></i> {{ .Get "title" | default "Important" }}
+  </div>
+  {{ .Inner | markdownify }}
+</div>
