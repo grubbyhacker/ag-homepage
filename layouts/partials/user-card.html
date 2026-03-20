@@ -1,0 +1,13 @@
+<article class="user-card">
+  <a href="/{{ .profile.username }}/">
+    {{ if .profile.avatar }}
+    <img src="{{ .profile.avatar }}" alt="{{ .profile.display_name }}" class="avatar">
+        {{ else }}
+    <div class="avatar fallback-avatar">
+    </div>
+    {{ end }}
+    <h3>
+{{ .profile.display_name }}
+    </h3>
+  </a>
+</article>

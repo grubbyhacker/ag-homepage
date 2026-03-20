@@ -3,12 +3,12 @@
 # See .agent/ci-and-testing.md for full target documentation.
 
 HUGO          := hugo
-PRETTIER      := npx prettier
+PRETTIER      := npx -y prettier
 DJLINT        := djlint
-STYLELINT     := npx stylelint
-ESLINT        := npx eslint
+STYLELINT     := npx -y stylelint
+ESLINT        := npx -y eslint
 YAMLLINT      := yamllint
-MARKDOWNLINT  := npx markdownlint
+MARKDOWNLINT  := npx -y markdownlint
 LYCHEE        := lychee
 
 SCSS_FILES    := "assets/scss/**/*.scss"
