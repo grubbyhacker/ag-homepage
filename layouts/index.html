@@ -1,12 +1,12 @@
 {{ define "main" }}
-<div class="landing-hero">
+  <div class="landing-hero">
     {{ .Content }}
-</div>
-<div class="user-grid">
-    {{ range site.Data.users }}
-      {{ if .profile.enabled }}
-        {{ partial "user-card.html" . }}
+  </div>
+  <div class="user-grid">
+    {{ range $username, $u := site.Data.users }}
+      {{ if $u.profile.enabled }}
+        {{ partial "user-card.html" $u }}
       {{ end }}
     {{ end }}
-</div>
+  </div>
 {{ end }}

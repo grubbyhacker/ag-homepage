@@ -1,13 +1,8 @@
 <header class="site-header">
   <div class="site-logo">
-    <a href="/">{{ site.Title }}</a>
+    <a href="{{ "/" | relURL }}">{{ site.Title }}</a>
   </div>
   <nav class="site-nav">
-    {{ range site.Data.users }}
-      {{ if .profile.enabled }}
-    <a href="/{{ .profile.username }}/" class="nav-link">{{ .profile.short_name }}</a>
-      {{ end }}
-    {{ end }}
     {{ partial "dark-mode-toggle.html" . }}
   </nav>
 </header>

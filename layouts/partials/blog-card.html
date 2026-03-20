@@ -8,18 +8,14 @@
       <span class="read-time">{{ .ReadingTime }} min read</span>
       {{ end }}
     </div>
-    <h2 class="post-title">
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    </h2>
+    <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
   </header>
   {{ with .Params.tags }}
   <div class="post-tags">
     {{ range . }}
-      {{ partial "tag-pill.html" . }}
+      {{ partial "tag-pill.html" (dict "tag" .) }}
     {{ end }}
   </div>
   {{ end }}
-  <p class="post-summary">
-{{ .Summary | plainify | truncate 150 }}
-  </p>
+  <p class="post-summary">{{ .Summary | plainify | truncate 150 }}</p>
 </article>

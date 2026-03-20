@@ -26,7 +26,8 @@ PUBLIC_DIR    := public/
 # ---------- Development ----------
 
 serve:
-	$(HUGO) server -D --baseURL=http://localhost:1313
+	git config --global --add safe.directory /workspace || true
+	$(HUGO) server -D --baseURL=http://localhost:1313 --bind 0.0.0.0
 
 build:
 	git config --global --add safe.directory /workspace
@@ -40,7 +41,7 @@ clean:
 format: format-scss format-js format-templates
 
 format-templates:
-	$(DJLINT) $(LAYOUTS_DIR) --reformat --profile=jinja
+	$(DJLINT) $(LAYOUTS_DIR) --reformat
 
 format-scss:
 	$(PRETTIER) --write $(SCSS_FILES)
@@ -53,7 +54,7 @@ format-js:
 lint: lint-scss lint-js lint-templates lint-yaml lint-md
 
 lint-templates:
-	$(DJLINT) $(LAYOUTS_DIR) --check --profile=jinja
+	$(DJLINT) $(LAYOUTS_DIR) --check
 
 lint-scss:
 	$(PRETTIER) --check $(SCSS_FILES)
