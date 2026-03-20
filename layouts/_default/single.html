@@ -38,7 +38,7 @@
       {{ $user := index site.Data.users $username }}
       {{ if $user }}
       <p>
-              Written by <a href="/{{ $username }}/">{{ $user.profile.display_name }}</a>
+                    Written by <a href="/{{ $username }}/">{{ $user.profile.display_name }}</a>
     </p>
       {{ end }}
   </div>

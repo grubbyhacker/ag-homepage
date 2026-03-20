@@ -2,7 +2,7 @@
 {{ if $quotesData }}
 <div class="quotes-widget"
      id="quotes-widget"
-     data-quotes="{{ jsonify $quotesData | htmlEscape }}">
+     data-quotes='{{ jsonify $quotesData }}'>
   <blockquote class="quote-display">
     <p class="quote-text" id="quote-text">
     </p>

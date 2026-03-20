@@ -3,7 +3,7 @@
     <div class="gallery-card__image-wrapper">
       {{ with .Params.thumbnail }}
       <img src="{{ . }}" alt="{{ $.Title }}" class="gallery-card__image">
-              {{ else }}
+                  {{ else }}
         {{ with .Params.image }}
       <img src="{{ . }}" alt="{{ $.Title }}" class="gallery-card__image">
         {{ end }}
