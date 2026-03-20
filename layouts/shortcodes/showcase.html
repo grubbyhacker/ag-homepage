@@ -1,0 +1,17 @@
+<div class="showcase"
+     style="display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem 0;
+            flex-wrap: wrap">
+  <div class="showcase__content" style="flex: 1 1 300px;">
+    {{ .Inner | markdownify }}
+  </div>
+  <div class="showcase__image" style="flex: 1 1 300px;">
+    <img src="{{ .Get "image" }}"
+         alt="Showcase Image"
+         style="width: 100%;
+                border-radius: var(--radius-md);
+                box-shadow: var(--shadow-sm)">
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<div class="callout callout--caution">
+  <div class="callout-title">
+    <i class="fa-solid fa-hand"></i> {{ .Get "title" | default "Caution" }}
+  </div>
+  {{ .Inner | markdownify }}
+</div>

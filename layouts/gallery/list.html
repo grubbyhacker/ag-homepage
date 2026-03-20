@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="page-header" style="margin-bottom: 2rem;">
+    {{ $pathParts := split (trim .RelPermalink "/") "/" }}
+    {{ $username := index $pathParts 0 }}
+    {{ $user := index site.Data.users $username }}
+  <h1>
+{{ $user.profile.gallery_title | default "Gallery" }}
+  </h1>
+</div>
+
+<div class="gallery-grid">
+    {{ $paginator := .Paginate .RegularPages }}
+    {{ range $paginator.Pages }}
+      {{ partial "gallery-carousel.html" . }}
+    {{ end }}
+    {{ template "_internal/pagination.html" . }}
+</div>
+{{ end }}

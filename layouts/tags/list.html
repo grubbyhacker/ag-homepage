@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="page-header" style="margin-bottom: 2rem;">
+  <h1>
+All Tags
+  </h1>
+    {{ with .Content }}
+  <div class="page-intro">
+{{ . }}
+  </div>
+    {{ end }}
+</div>
+
+<div class="list-layout">
+  <div class="post-tags" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      {{ range .Data.Terms.ByCount }}
+        {{ partial "tag-pill.html" (dict "tag" .Term) }}
+      {{ end }}
+  </div>
+</div>
+{{ end }}

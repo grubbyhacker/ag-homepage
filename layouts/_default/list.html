@@ -2,15 +2,17 @@
   {{ if eq .RelPermalink (printf "/%s/" .Section) }}
     {{ partial "user-hub.html" . }}
   {{ else }}
-    <div class="page-header" style="margin-bottom: 2rem;">
-      <h1>{{ .Title }}</h1>
-    </div>
-    <div class="list-layout">
+<div class="page-header" style="margin-bottom: 2rem;">
+  <h1>
+{{ .Title }}
+  </h1>
+</div>
+<div class="list-layout">
       {{ $paginator := .Paginate .Pages }}
       {{ range $paginator.Pages }}
         {{ partial "blog-card.html" . }}
       {{ end }}
       {{ template "_internal/pagination.html" . }}
-    </div>
+</div>
   {{ end }}
 {{ end }}

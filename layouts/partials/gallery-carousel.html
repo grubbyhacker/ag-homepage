@@ -1,0 +1,23 @@
+<article class="gallery-card">
+  <a href="{{ .RelPermalink }}" class="gallery-card__link">
+    <div class="gallery-card__image-wrapper">
+      {{ with .Params.thumbnail }}
+      <img src="{{ . }}" alt="{{ $.Title }}" class="gallery-card__image">
+              {{ else }}
+        {{ with .Params.image }}
+      <img src="{{ . }}" alt="{{ $.Title }}" class="gallery-card__image">
+        {{ end }}
+      {{ end }}
+    </div>
+    <div class="gallery-card__content">
+      <h3 class="gallery-card__title">
+{{ .Title }}
+      </h3>
+      {{ with .Params.summary }}
+      <p class="gallery-card__summary">
+{{ . }}
+      </p>
+      {{ end }}
+    </div>
+  </a>
+</article>

@@ -1,6 +1,7 @@
 {{ $tag := .tag }}
 {{ $hash := index (split (md5 $tag) "") 0 }}
 {{ $slot := add (mod (int (printf "0x%s" $hash)) 10) 1 }}
-<a href="{{ (printf "/tags/%s/" ($tag | urlize)) | relURL }}" class="tag-pill color-slot-{{ $slot }}">
+<a href="{{ (printf "/tags/%s/" ($tag | urlize)) | relURL }}"
+   class="tag-pill color-slot-{{ $slot }}">
   {{ $tag }}
 </a>

@@ -1,0 +1,6 @@
+<div class="callout callout--note">
+  <div class="callout-title">
+    <i class="fa-solid fa-circle-info"></i> {{ .Get "title" | default "Note" }}
+  </div>
+  {{ .Inner | markdownify }}
+</div>

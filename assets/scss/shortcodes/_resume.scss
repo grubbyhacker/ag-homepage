@@ -1,0 +1,72 @@
+@use "../layout-vars" as *;
+
+.resume-org {
+  margin-bottom: 2.5rem;
+}
+
+.resume-org__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+
+  h3 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .org-period {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+}
+
+.resume-role {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    bottom: -1rem;
+    width: 2px;
+    background-color: var(--color-border);
+  }
+
+  &:last-child::before {
+    bottom: 0;
+  }
+}
+
+.resume-role__header {
+  margin-bottom: 0.75rem;
+
+  h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.2rem;
+    color: var(--color-heading);
+  }
+
+  .role-period {
+    font-size: 0.85rem;
+    color: var(--color-text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.resume-role__content {
+  color: var(--color-text);
+  line-height: inherit;
+
+  ul {
+    padding-left: 1.25rem;
+    margin-bottom: 0;
+  }
+}

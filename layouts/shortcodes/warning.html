@@ -1,0 +1,6 @@
+<div class="callout callout--warning">
+  <div class="callout-title">
+    <i class="fa-solid fa-triangle-exclamation"></i> {{ .Get "title" | default "Warning" }}
+  </div>
+  {{ .Inner | markdownify }}
+</div>
