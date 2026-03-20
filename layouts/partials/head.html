@@ -1,8 +1,8 @@
-{# djlint:off #}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}</title>
-<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ site.Title }}{{ end }}{{ end }}">
+<meta name="description"
+      content="{{ with .Description }}{{ . }}{{ else }}{{ if .IsPage }}{{ .Summary }}{{ else }}{{ site.Title }}{{ end }}{{ end }}">
 
 <script>
   (function() {
@@ -13,19 +13,34 @@
 </script>
 
 {{- $style := resources.Get "scss/main.scss" | toCSS | minify | fingerprint -}}
-<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+<link rel="stylesheet"
+      href="{{ $style.RelPermalink }}"
+      integrity="{{ $style.Data.Integrity }}">
 
 {{- $darkStyle  := site.Params.chroma_style_dark  | default "catppuccin-mocha" -}}
 {{- $lightStyle := site.Params.chroma_style_light | default "catppuccin-latte" -}}
 {{- $chromaDark  := resources.Get (printf "css/chroma-%s.css" $darkStyle) | default (resources.Get "css/chroma-catppuccin-mocha.css") -}}
 {{- $chromaLight := resources.Get (printf "css/chroma-%s.css" $lightStyle) | default (resources.Get "css/chroma-catppuccin-latte.css") -}}
-{{- if $chromaDark -}}<link id="chroma-dark" rel="stylesheet" href="{{ $chromaDark.RelPermalink }}" media='[data-theme="dark"]'>{{- end -}}
-{{- if $chromaLight -}}<link id="chroma-light" rel="stylesheet" href="{{ $chromaLight.RelPermalink }}" media='[data-theme="light"]'>{{- end -}}
+{{- if $chromaDark -}}
+<link id="chroma-dark"
+      rel="stylesheet"
+      href="{{ $chromaDark.RelPermalink }}"
+      media='[data-theme="dark"]'>
+{{- end -}}
+{{- if $chromaLight -}}
+<link id="chroma-light"
+      rel="stylesheet"
+      href="{{ $chromaLight.RelPermalink }}"
+      media='[data-theme="light"]'>
+{{- end -}}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer">
 
 {{- $ui := resources.Get "js/ui.js" | minify | fingerprint -}}
 <script src="{{ $ui.RelPermalink }}" defer integrity="{{ $ui.Data.Integrity }}"></script>
 {{- $quotes := resources.Get "js/quotes.js" | minify | fingerprint -}}
 {{- if $quotes -}}<script src="{{ $quotes.RelPermalink }}" defer integrity="{{ $quotes.Data.Integrity }}"></script>{{- end -}}
-{# djlint:on #}

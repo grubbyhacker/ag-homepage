@@ -296,7 +296,7 @@ make format-templates   # auto-fix in place
 make lint-templates     # check only, exits non-zero on violations
 ```
 
-djlint is configured in `.djlintrc` at the repo root. Do not modify `.djlintrc` without updating this section.
+djlint is configured in `.djlintrc` at the repo root. We use the `golang` profile for djlint, which natively understands Hugo's `{{ ... }}` syntax within HTML attributes and blocks. Do not modify `.djlintrc` without updating this section.
 
 ### When to suppress djlint
 
