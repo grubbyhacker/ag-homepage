@@ -1,0 +1,20 @@
+---
+extends:
+  - stylelint-scss/recommended
+
+rules:
+  # Enforce semantic token boundary — no raw hex outside themes/
+  color-no-hex: true
+
+  # Allow @use and @forward (modern Sass)
+  scss/at-rule-no-unknown: true
+
+  # Reasonable nesting depth
+  max-nesting-depth: 4
+
+overrides:
+  - files:
+      - "assets/scss/themes/**/*.scss"
+    rules:
+      # Palette files define raw hex values by design
+      color-no-hex: null

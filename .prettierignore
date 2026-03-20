@@ -1,0 +1,17 @@
+# Hugo output — never format generated files
+public/
+resources/
+
+# Hugo templates — formatted by djlint, not Prettier
+layouts/
+
+# YAML — linted by yamllint, not Prettier (Prettier unquotes strings)
+*.yaml
+*.yml
+
+# Markdown — formatted by markdownlint, not Prettier
+*.md
+
+# Nix
+*.nix
+flake.lock

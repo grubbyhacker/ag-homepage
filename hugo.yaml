@@ -1,0 +1,27 @@
+baseURL: "https://example.com/"
+languageCode: "en-us"
+title: "Our Family Site"
+paginate: 10
+enableRobotsTXT: true
+enableGitInfo: true
+
+taxonomies:
+  tag: "tags"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    lineNumbersInTable: false
+    noClasses: false
+
+params:
+  debug: false
+  dateFormat: "02 Jan 2006"
+  paginateBy: 10
+  chroma_style_dark: "catppuccin-mocha"
+  chroma_style_light: "catppuccin-latte"
