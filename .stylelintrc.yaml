@@ -1,6 +1,6 @@
 ---
 extends:
-  - stylelint-scss/recommended
+  - stylelint-config-standard-scss
 
 rules:
   # Enforce semantic token boundary — no raw hex outside themes/

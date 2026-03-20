@@ -1,0 +1,39 @@
+// Semantic Token Contract
+// This file documents the available semantic CSS custom properties.
+// Components must ONLY use these --color-* tokens. They must never
+// reference --palette-* tokens or raw hex values.
+// -
+// - Backgrounds
+// - --color-bg:              Main page background
+// - --color-bg-raised:       Card backgrounds, slight elevation
+// - --color-bg-sunken:       Code blocks, subtle insets
+// -
+// - Borders
+// - --color-border:          Standard structural borders
+// - --color-border-subtle:   Dividers, faint outlines
+// -
+// - Typography
+// - --color-text:            Primary body text
+// - --color-text-muted:      Secondary text, captions
+// - --color-text-faint:      Disabled text, very subtle hints
+// - --color-heading:         Page and section headings
+// -
+// - Interactive
+// - --color-link:            Standard text links
+// - --color-link-hover:      Link hover state
+// - --color-accent:          Primary branding, active states, tiles
+// - --color-accent-alt:      Secondary branding
+// -
+// - Code
+// - --color-code-bg:         Code block background
+// - --color-code-text:       Inline code text
+// -
+// - Callouts (Shortcodes)
+// - --color-callout-note:    Informational callout border/bg
+// - --color-callout-tip:     Success/tip callout
+// - --color-callout-warning: Warning/caution callout
+// - --color-callout-caution: High-risk/danger callout
+// - --color-callout-important: Crucial info callout
+// -
+// - Tags
+// --color-tag-1 through --color-tag-10: Rotational tag pill colors

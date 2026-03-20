@@ -1,0 +1,22 @@
+username: "eve"
+display_name: "Eve Black"
+short_name: "Eve"
+tagline: "Security Researcher. Speaker. Hacker."
+avatar: "/images/eve/avatar.jpg"
+headshot: "/images/eve/headshot.jpg"
+enabled: true
+
+features:
+  blog: true
+  about: true
+  gallery: false
+
+social:
+  - platform: "mastodon"
+    url: "https://infosec.exchange/@example-eve"
+    icon: "fab fa-mastodon fa-2x"
+    label: "Mastodon"
+  - platform: "github"
+    url: "https://github.com/example-eve-hacks"
+    icon: "fab fa-github fa-2x"
+    label: "GitHub"

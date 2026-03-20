@@ -1,0 +1,35 @@
+@use "catppuccin-mocha";
+
+:root,
+[data-theme="dark"] {
+  --color-bg: var(--palette-base);
+  --color-bg-raised: var(--palette-surface0);
+  --color-bg-sunken: var(--palette-mantle);
+  --color-border: var(--palette-surface1);
+  --color-border-subtle: var(--palette-surface0);
+  --color-text: var(--palette-text);
+  --color-text-muted: var(--palette-subtext0);
+  --color-text-faint: var(--palette-overlay1);
+  --color-heading: var(--palette-lavender);
+  --color-link: var(--palette-blue);
+  --color-link-hover: var(--palette-sapphire);
+  --color-accent: var(--palette-mauve);
+  --color-accent-alt: var(--palette-pink);
+  --color-code-bg: var(--palette-mantle);
+  --color-code-text: var(--palette-green);
+  --color-callout-note: var(--palette-blue);
+  --color-callout-tip: var(--palette-green);
+  --color-callout-warning: var(--palette-yellow);
+  --color-callout-caution: var(--palette-red);
+  --color-callout-important: var(--palette-mauve);
+  --color-tag-1: var(--palette-tag-1);
+  --color-tag-2: var(--palette-tag-2);
+  --color-tag-3: var(--palette-tag-3);
+  --color-tag-4: var(--palette-tag-4);
+  --color-tag-5: var(--palette-tag-5);
+  --color-tag-6: var(--palette-tag-6);
+  --color-tag-7: var(--palette-tag-7);
+  --color-tag-8: var(--palette-tag-8);
+  --color-tag-9: var(--palette-tag-9);
+  --color-tag-10: var(--palette-tag-10);
+}

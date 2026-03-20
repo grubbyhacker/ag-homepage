@@ -1,0 +1,22 @@
+username: "frank"
+display_name: "Frank Green"
+short_name: "Frank"
+tagline: "Retro Gaming Hobbyist. Pixel Enthusiast."
+avatar: "/images/frank/avatar.jpg"
+headshot: "/images/frank/headshot.jpg"
+enabled: true
+
+features:
+  blog: true
+  about: true
+  gallery: false
+
+social:
+  - platform: "twitch"
+    url: "https://twitch.tv/example-frank"
+    icon: "fab fa-twitch fa-2x"
+    label: "Twitch"
+  - platform: "youtube"
+    url: "https://youtube.com/c/example-frank"
+    icon: "fab fa-youtube fa-2x"
+    label: "YouTube"

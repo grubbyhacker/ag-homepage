@@ -1,0 +1,18 @@
+username: "bob"
+display_name: "Bob Jones"
+short_name: "Bob"
+tagline: "Home baker. Woodworker. Maker."
+avatar: "/images/bob/avatar.jpg"
+headshot: "/images/bob/headshot.jpg"
+enabled: true
+
+features:
+  blog: true
+  about: true
+  gallery: false
+
+social:
+  - platform: "instagram"
+    url: "https://instagram.com/example-bob"
+    icon: "fab fa-instagram fa-2x"
+    label: "Instagram"

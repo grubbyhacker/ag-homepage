@@ -1,0 +1,25 @@
+username: "alice"
+display_name: "Alice Smith"
+short_name: "Alice"
+tagline: "Software Engineer. Open Source Fan."
+avatar: "/images/alice/avatar.jpg"
+headshot: "/images/alice/headshot.jpg"
+enabled: true
+
+features:
+  blog: true
+  about: true
+  gallery: true
+
+social:
+  - platform: "github"
+    url: "https://github.com/example-alice"
+    icon: "fab fa-github fa-2x"
+    label: "GitHub"
+  - platform: "linkedin"
+    url: "https://linkedin.com/in/example-alice"
+    icon: "fab fa-linkedin fa-2x"
+    label: "LinkedIn"
+
+gallery_title: "Photo Portfolio"
+gallery_aspect_ratio: "4/3"
