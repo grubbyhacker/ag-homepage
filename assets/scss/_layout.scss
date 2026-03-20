@@ -1,0 +1,62 @@
+@use "layout-vars" as *;
+
+// Shell
+.main-content {
+  max-width: $bp-desktop;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: calc(100vh - 150px);
+}
+
+// Site Header
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: var(--color-bg-raised);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-link {
+  font-size: 1rem;
+  color: var(--color-text);
+
+  &:hover {
+    color: var(--color-heading);
+    text-decoration: none;
+  }
+}
+
+// Global theme toggle
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    color: var(--color-heading);
+  }
+}
+
+// Site Footer
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
