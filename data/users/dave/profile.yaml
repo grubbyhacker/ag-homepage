@@ -1,0 +1,25 @@
+username: "dave"
+display_name: "Dave Brown"
+short_name: "Dave"
+tagline: "Photographer. Traveler. Observer."
+avatar: "/images/dave/avatar.jpg"
+headshot: "/images/dave/headshot.jpg"
+enabled: true
+
+features:
+  blog: true
+  about: true
+  gallery: true
+
+social:
+  - platform: "flickr"
+    url: "https://flickr.com/example-dave"
+    icon: "fab fa-flickr fa-2x"
+    label: "Flickr"
+  - platform: "500px"
+    url: "https://500px.com/example-dave"
+    icon: "fab fa-500px fa-2x"
+    label: "500px"
+
+gallery_title: "Photography"
+gallery_aspect_ratio: "3/2"

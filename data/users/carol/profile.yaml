@@ -1,0 +1,25 @@
+username: "carol"
+display_name: "Carol White"
+short_name: "Carol"
+tagline: "Quilter. Textile Artist. Dreamer."
+avatar: "/images/carol/avatar.jpg"
+headshot: "/images/carol/headshot.jpg"
+enabled: true
+
+features:
+  blog: true
+  about: true
+  gallery: true
+
+social:
+  - platform: "pinterest"
+    url: "https://pinterest.com/example-carol"
+    icon: "fab fa-pinterest fa-2x"
+    label: "Pinterest"
+  - platform: "instagram"
+    url: "https://instagram.com/example-carol"
+    icon: "fab fa-instagram fa-2x"
+    label: "Instagram"
+
+gallery_title: "Quilt Portfolio"
+gallery_aspect_ratio: "1/1"

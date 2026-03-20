@@ -1,0 +1,16 @@
+quotes:
+  - text: "Security is a process, not a product."
+    attribution: "Bruce Schneier"
+  - text: >
+      If you think technology can solve your security problems, then you
+      don't understand the problems and you don't understand the technology.
+    attribution: "Bruce Schneier"
+  - text: "Amateurs hack systems, professionals hack people."
+    attribution: "Bruce Schneier"
+  - text: >
+      The only truly secure system is one that is powered off, cast in a
+      block of concrete and sealed in a lead-lined room with armed guards
+      - and even then I have my doubts.
+    attribution: "Gene Spafford"
+  - text: "Trust, but verify."
+    attribution: "Russian Proverb"

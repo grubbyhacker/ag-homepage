@@ -1,0 +1,40 @@
+:root {
+  --palette-base: #1e1e2e;
+  --palette-mantle: #181825;
+  --palette-crust: #11111b;
+  --palette-surface0: #313244;
+  --palette-surface1: #45475a;
+  --palette-surface2: #585b70;
+  --palette-overlay0: #6c7086;
+  --palette-overlay1: #7f849c;
+  --palette-overlay2: #9399b2;
+  --palette-subtext0: #a6adc8;
+  --palette-subtext1: #bac2de;
+  --palette-text: #cdd6f4;
+  --palette-lavender: #b4befe;
+  --palette-blue: #89b4fa;
+  --palette-sapphire: #74c7ec;
+  --palette-sky: #89dceb;
+  --palette-teal: #94e2d5;
+  --palette-green: #a6e3a1;
+  --palette-yellow: #f9e2af;
+  --palette-peach: #fab387;
+  --palette-maroon: #eba0ac;
+  --palette-red: #f38ba8;
+  --palette-mauve: #cba6f7;
+  --palette-pink: #f5c2e7;
+  --palette-flamingo: #f2cdcd;
+  --palette-rosewater: #f5e0dc;
+
+  /* Tag accent pool — 10 slots, drawn from the palette */
+  --palette-tag-1: var(--palette-mauve);
+  --palette-tag-2: var(--palette-blue);
+  --palette-tag-3: var(--palette-green);
+  --palette-tag-4: var(--palette-peach);
+  --palette-tag-5: var(--palette-pink);
+  --palette-tag-6: var(--palette-teal);
+  --palette-tag-7: var(--palette-yellow);
+  --palette-tag-8: var(--palette-maroon);
+  --palette-tag-9: var(--palette-lavender);
+  --palette-tag-10: var(--palette-sky);
+}

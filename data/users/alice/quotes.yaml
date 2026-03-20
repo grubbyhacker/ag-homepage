@@ -1,0 +1,13 @@
+quotes:
+  - text: "Talk is cheap. Show me the code."
+    attribution: "Linus Torvalds"
+  - text: "Programs must be written for people to read, and only incidentally for machines to execute."
+    attribution: "Harold Abelson"
+  - text: >
+      Any fool can write code that a computer can understand.
+      Good programmers write code that humans can understand.
+    attribution: "Martin Fowler"
+  - text: "First, solve the problem. Then, write the code."
+    attribution: "John Johnson"
+  - text: "Experience is the name everyone gives to their mistakes."
+    attribution: "Oscar Wilde"
